@@ -77,7 +77,7 @@ export default function ReportComplaintPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/complaints",
+        "https://smart-civic-platform-tox2.onrender.com/api/complaints",
         {
           method: "POST",
           headers: {
