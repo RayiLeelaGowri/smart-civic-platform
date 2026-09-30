@@ -40,11 +40,20 @@ const allowedDepartments = [
   "Parks and Recreation",
 ];
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://smart-civic-frontend-p3gc.onrender.com",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.options("*", cors());
 
 app.use(express.json({ limit: "100kb" }));
 
@@ -134,11 +143,7 @@ app.post("/api/complaints", async (req, res) => {
       });
     }
 
-    if (
-      latitude !== undefined &&
-      latitude !== null &&
-      latitude !== ""
-    ) {
+    if (latitude !== undefined && latitude !== null && latitude !== "") {
       const numericLatitude = Number(latitude);
 
       if (
@@ -152,11 +157,7 @@ app.post("/api/complaints", async (req, res) => {
       }
     }
 
-    if (
-      longitude !== undefined &&
-      longitude !== null &&
-      longitude !== ""
-    ) {
+    if (longitude !== undefined && longitude !== null && longitude !== "") {
       const numericLongitude = Number(longitude);
 
       if (
@@ -203,9 +204,7 @@ app.post("/api/complaints", async (req, res) => {
     ) {
       if (
         typeof citizenEmail !== "string" ||
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-          citizenEmail.trim()
-        ) ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(citizenEmail.trim()) ||
         citizenEmail.trim().length > 150
       ) {
         return res.status(400).json({
@@ -376,10 +375,7 @@ app.get("/api/complaints/track/:id", async (req, res) => {
       complaint: result.rows[0],
     });
   } catch (error) {
-    console.error(
-      "Citizen complaint tracking error:",
-      error.message
-    );
+    console.error("Citizen complaint tracking error:", error.message);
 
     res.status(500).json({
       message: "Failed to track complaint.",
@@ -425,10 +421,7 @@ app.get(
         complaint: result.rows[0],
       });
     } catch (error) {
-      console.error(
-        "Fetch complaint details error:",
-        error.message
-      );
+      console.error("Fetch complaint details error:", error.message);
 
       res.status(500).json({
         message: "Failed to fetch complaint details.",
@@ -482,10 +475,7 @@ app.patch(
         complaint: result.rows[0],
       });
     } catch (error) {
-      console.error(
-        "Update complaint status error:",
-        error.message
-      );
+      console.error("Update complaint status error:", error.message);
 
       res.status(500).json({
         message: "Failed to update complaint status.",
@@ -548,9 +538,7 @@ app.patch(
       }
 
       const receivedAssignedUser =
-        assignedTo !== undefined
-          ? assignedTo
-          : assignedUserId;
+        assignedTo !== undefined ? assignedTo : assignedUserId;
 
       let normalizedAssignedUserId = null;
 
@@ -638,10 +626,7 @@ app.patch(
         complaint: complaintResult.rows[0],
       });
     } catch (error) {
-      console.error(
-        "Update complaint assignment error:",
-        error.message
-      );
+      console.error("Update complaint assignment error:", error.message);
 
       res.status(500).json({
         message: "Failed to update complaint assignment.",
@@ -697,10 +682,7 @@ app.get(
         complaintsByCategory: categoryResult.rows,
       });
     } catch (error) {
-      console.error(
-        "Dashboard statistics error:",
-        error.message
-      );
+      console.error("Dashboard statistics error:", error.message);
 
       res.status(500).json({
         message: "Failed to fetch dashboard statistics.",
@@ -741,10 +723,7 @@ app.get(
         departments: result.rows,
       });
     } catch (error) {
-      console.error(
-        "Department statistics error:",
-        error.message
-      );
+      console.error("Department statistics error:", error.message);
 
       res.status(500).json({
         message: "Failed to fetch department statistics.",
