@@ -1,10 +1,18 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://smart-civic-platform-tox2.onrender.com/api";
 
 export async function apiRequest(path, options = {}) {
-  const token = localStorage.getItem("token");
+  const token =
+    typeof window !== "undefined"
+      ? localStorage.getItem("token")
+      : null;
 
   if (!token) {
-    window.location.href = "/login";
+    if (typeof window !== "undefined") {
+      window.location.href = "/login";
+    }
+
     throw new Error("Please sign in as an administrator.");
   }
 

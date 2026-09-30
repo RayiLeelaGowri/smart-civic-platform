@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://smart-civic-platform-tox2.onrender.com/api";
 
 const inputClassName =
   "w-full rounded-xl border border-aurora-border bg-aurora-panel-soft px-4 py-3 text-slate-100 placeholder-aurora-subtle outline-none transition focus:border-aurora-cyan focus:ring-2 focus:ring-aurora-cyan/20";

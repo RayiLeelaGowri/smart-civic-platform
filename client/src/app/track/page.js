@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const API_URL = "http://localhost:5000";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://smart-civic-platform-tox2.onrender.com";
 
 const inputClassName =
   "w-full rounded-xl border border-aurora-border bg-[#12283a] px-4 py-3 text-[#f3f7f5] placeholder:text-[#9aafbd] caret-aurora-mint outline-none transition focus:border-aurora-cyan focus:ring-2 focus:ring-aurora-cyan/20";
