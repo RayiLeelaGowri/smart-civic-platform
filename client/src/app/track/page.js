@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL ||
-  "https://smart-civic-platform-tox2.onrender.com";
+  "https://smart-civic-platform-tox2.onrender.com/api";
 
 const inputClassName =
   "w-full rounded-xl border border-aurora-border bg-[#12283a] px-4 py-3 text-[#f3f7f5] placeholder:text-[#9aafbd] caret-aurora-mint outline-none transition focus:border-aurora-cyan focus:ring-2 focus:ring-aurora-cyan/20";
@@ -32,7 +32,7 @@ export default function TrackComplaintPage() {
 
     try {
       const response = await fetch(
-        `${API_URL}/api/complaints/track/${complaintId.trim()}?email=${encodeURIComponent(
+        `${API_URL}/complaints/track/${complaintId.trim()}?email=${encodeURIComponent(
           email.trim()
         )}`
       );
