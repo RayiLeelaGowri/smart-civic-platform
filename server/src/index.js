@@ -74,7 +74,16 @@ app.get("/api/test-db", async (req, res) => {
       databaseTime: result.rows[0].database_time,
     });
   } catch (error) {
-    console.error("Database connection error:", error.message);
+    console.error("Database connection error:", {
+      message: error?.message,
+      code: error?.code,
+      detail: error?.detail,
+      hint: error?.hint,
+      table: error?.table,
+      column: error?.column,
+      constraint: error?.constraint,
+      stack: error?.stack,
+    });
 
     res.status(500).json({
       message: "Database connection failed.",
@@ -248,7 +257,18 @@ app.post("/api/complaints", async (req, res) => {
       complaint: result.rows[0],
     });
   } catch (error) {
-    console.error("Create complaint error:", error.message);
+    console.error("Create complaint error:", {
+      message: error?.message,
+      code: error?.code,
+      detail: error?.detail,
+      hint: error?.hint,
+      table: error?.table,
+      column: error?.column,
+      constraint: error?.constraint,
+      schema: error?.schema,
+      position: error?.position,
+      stack: error?.stack,
+    });
 
     res.status(500).json({
       message: "Failed to create complaint.",
@@ -278,7 +298,16 @@ app.get(
         complaints: result.rows,
       });
     } catch (error) {
-      console.error("Fetch complaints error:", error.message);
+      console.error("Fetch complaints error:", {
+        message: error?.message,
+        code: error?.code,
+        detail: error?.detail,
+        hint: error?.hint,
+        table: error?.table,
+        column: error?.column,
+        constraint: error?.constraint,
+        stack: error?.stack,
+      });
 
       res.status(500).json({
         message: "Failed to fetch complaints.",
@@ -308,7 +337,16 @@ app.get(
         users: result.rows,
       });
     } catch (error) {
-      console.error("Fetch users error:", error.message);
+      console.error("Fetch users error:", {
+        message: error?.message,
+        code: error?.code,
+        detail: error?.detail,
+        hint: error?.hint,
+        table: error?.table,
+        column: error?.column,
+        constraint: error?.constraint,
+        stack: error?.stack,
+      });
 
       res.status(500).json({
         message: "Failed to fetch users.",
@@ -375,7 +413,18 @@ app.get("/api/complaints/track/:id", async (req, res) => {
       complaint: result.rows[0],
     });
   } catch (error) {
-    console.error("Citizen complaint tracking error:", error.message);
+    console.error("Citizen complaint tracking error:", {
+      message: error?.message,
+      code: error?.code,
+      detail: error?.detail,
+      hint: error?.hint,
+      table: error?.table,
+      column: error?.column,
+      constraint: error?.constraint,
+      schema: error?.schema,
+      position: error?.position,
+      stack: error?.stack,
+    });
 
     res.status(500).json({
       message: "Failed to track complaint.",
@@ -421,7 +470,16 @@ app.get(
         complaint: result.rows[0],
       });
     } catch (error) {
-      console.error("Fetch complaint details error:", error.message);
+      console.error("Fetch complaint details error:", {
+        message: error?.message,
+        code: error?.code,
+        detail: error?.detail,
+        hint: error?.hint,
+        table: error?.table,
+        column: error?.column,
+        constraint: error?.constraint,
+        stack: error?.stack,
+      });
 
       res.status(500).json({
         message: "Failed to fetch complaint details.",
@@ -475,7 +533,16 @@ app.patch(
         complaint: result.rows[0],
       });
     } catch (error) {
-      console.error("Update complaint status error:", error.message);
+      console.error("Update complaint status error:", {
+        message: error?.message,
+        code: error?.code,
+        detail: error?.detail,
+        hint: error?.hint,
+        table: error?.table,
+        column: error?.column,
+        constraint: error?.constraint,
+        stack: error?.stack,
+      });
 
       res.status(500).json({
         message: "Failed to update complaint status.",
@@ -626,7 +693,16 @@ app.patch(
         complaint: complaintResult.rows[0],
       });
     } catch (error) {
-      console.error("Update complaint assignment error:", error.message);
+      console.error("Update complaint assignment error:", {
+        message: error?.message,
+        code: error?.code,
+        detail: error?.detail,
+        hint: error?.hint,
+        table: error?.table,
+        column: error?.column,
+        constraint: error?.constraint,
+        stack: error?.stack,
+      });
 
       res.status(500).json({
         message: "Failed to update complaint assignment.",
@@ -682,7 +758,16 @@ app.get(
         complaintsByCategory: categoryResult.rows,
       });
     } catch (error) {
-      console.error("Dashboard statistics error:", error.message);
+      console.error("Dashboard statistics error:", {
+        message: error?.message,
+        code: error?.code,
+        detail: error?.detail,
+        hint: error?.hint,
+        table: error?.table,
+        column: error?.column,
+        constraint: error?.constraint,
+        stack: error?.stack,
+      });
 
       res.status(500).json({
         message: "Failed to fetch dashboard statistics.",
@@ -723,7 +808,16 @@ app.get(
         departments: result.rows,
       });
     } catch (error) {
-      console.error("Department statistics error:", error.message);
+      console.error("Department statistics error:", {
+        message: error?.message,
+        code: error?.code,
+        detail: error?.detail,
+        hint: error?.hint,
+        table: error?.table,
+        column: error?.column,
+        constraint: error?.constraint,
+        stack: error?.stack,
+      });
 
       res.status(500).json({
         message: "Failed to fetch department statistics.",
